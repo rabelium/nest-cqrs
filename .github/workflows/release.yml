@@ -46,7 +46,13 @@ jobs:
 
       - name: Update package version (manual)
         if: github.event_name == 'workflow_dispatch'
-        run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          if [ "$CURRENT_VERSION" != "${{ github.event.inputs.version }}" ]; then
+            npm version ${{ github.event.inputs.version }} --no-git-tag-version
+          else
+            echo "Version already set to ${{ github.event.inputs.version }}"
+          fi
 
       - name: Publish to NPM
         run: npm publish --tag ${{ github.event.inputs.npm_tag || 'latest' }} --access public
