@@ -128,8 +128,17 @@ export class NatsSubject extends Subject<Event> {
       if (!this.nats_connection) {
         throw dependency_error;
       }
+
+      let headers: MsgHdrsType | undefined;
+      if (this.options.headers && nats) {
+        headers = nats.headers();
+        Object.entries(this.options.headers).forEach(([key, value]) => {
+          headers?.set(key, value);
+        });
+      }
+
       this.nats_connection.publish(this.subject_name, encoded_data, {
-        headers: this.options.headers as MsgHdrsType | undefined,
+        headers,
       });
     } catch (error) {
       this.logger.error('Failed to publish message to NATS:', error);
