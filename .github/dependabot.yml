@@ -1,0 +1,58 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    assignees:
+      - "rabelium"
+    reviewers:
+      - "rabelium"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+    ignore:
+      # Ignore major version updates for peer dependencies
+      - dependency-name: "@nestjs/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "rxjs"
+        update-types: ["version-update:semver-major"]
+    groups:
+      nestjs:
+        patterns:
+          - "@nestjs/*"
+      types:
+        patterns:
+          - "@types/*"
+      testing:
+        patterns:
+          - "jest"
+          - "ts-jest"
+          - "@types/jest"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    assignees:
+      - "rabelium"
+    reviewers:
+      - "rabelium"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions" 

@@ -1,0 +1,38 @@
+# Source files
+src/
+*.spec.ts
+*.test.ts
+
+# Build configuration
+tsconfig.lib.json
+tsconfig.lib.tsbuildinfo
+
+# Development files
+.eslintrc.js
+.prettierrc
+jest.config.js
+
+# Node modules and lockfiles
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Build artifacts (keep only dist/)
+.tsbuildinfo
+*.log 
