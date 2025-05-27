@@ -1,12 +1,12 @@
 {
   "name": "@rabelium/cqrs",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "description": "A NestJS CQRS library",
   "author": "Racem Zouaghi <racem.zouaghi@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rabelium/nest-cqrs.git"
+    "url": "git+https://github.com/rabelium/nest-cqrs.git"
   },
   "keywords": [
     "nestjs",
@@ -53,9 +53,12 @@
       "**/*.spec.ts"
     ],
     "transform": {
-      "^.+\\.ts$": ["ts-jest", {
-        "tsconfig": "tsconfig.lib.json"
-      }]
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.lib.json"
+        }
+      ]
     },
     "moduleFileExtensions": [
       "ts",
